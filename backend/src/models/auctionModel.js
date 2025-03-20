@@ -10,6 +10,6 @@ const auctionModel = new Schema({
         date: String
     }],
     description: {type: String, required: true}
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model('auction', auctionModel)
