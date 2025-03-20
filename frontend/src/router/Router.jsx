@@ -8,7 +8,7 @@ const Router = () => {
         <>
             <Routes>
                 <Route exact path="/" element={<Layout><AuctionsList/></Layout>}></Route>
-                <Route exact path="/view" element={<Layout><ViewAuction /></Layout>}></Route>
+                <Route exact path="/view/:id" element={<Layout><ViewAuction /></Layout>}></Route>
             </Routes>
         </>
     )

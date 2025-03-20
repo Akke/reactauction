@@ -1,10 +1,12 @@
-import Router from "./Router/Router.jsx";
+import Router from "./router/Router.jsx";
+import "./App.css";
+import { BrowserRouter } from "react-router";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Router />
-    </>
+    </BrowserRouter>
   )
 }
 
