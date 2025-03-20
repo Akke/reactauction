@@ -4,7 +4,7 @@ const auctionModel = new mongoose.Schema({
     title: {type: String, required: true},
     closingDate: {type: String, required: true}, 
     askingPrice: {type: Number, required: true},
-    user: {type: String, required: true},
+    user: {type: mongoose.Schema.ObjectId, required: true},
     bids: [{
         userId: mongoose.Schema.Types.ObjectId,
         bid: Number,

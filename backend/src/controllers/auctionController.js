@@ -1,4 +1,5 @@
 const Auction = require('../models/auctionModel')
+const { findById } = require('../models/userModel')
 
 const createAuction = async (req, res) => {
     const {title, closingDate, askingPrice, description} = req.body
@@ -18,4 +19,16 @@ const createAuction = async (req, res) => {
     }
 }
 
-module.exports = {createAuction}
+const deleteAuction = async (req, res) => {
+    const {id} = req.params
+    const auction = await Auction.findById(id)
+    const idIsMatch = req.user.id == auction.user
+    if(!idIsMatch){
+       return res.status(401).json({success: false, message: "Unauthorized access"})
+    }
+    const deleteAuction = await Auction.findByIdAndDelete(id)
+
+    res.status(200).json({success: true, message: "Auction successfully deleted"})
+}
+
+module.exports = {createAuction, deleteAuction}
