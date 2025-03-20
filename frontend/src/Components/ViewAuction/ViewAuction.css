@@ -1,0 +1,75 @@
+.ViewAuction {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.ViewAuction .content {
+    width: 70%;
+}
+
+.ViewAuction .content .description .title {
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.ViewAuction .sidebar {
+    width: 30%;
+}
+
+.ViewAuction .sidebar .title {
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.ViewAuction .sidebar .expiration-date {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.ViewAuction .sidebar .price {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.ViewAuction .sidebar .price .amount {
+    font-weight: bold;
+    flex-basis: 100%;
+}
+
+.ViewAuction .sidebar .bid-button {
+    background-color: dodgerblue;
+    border-radius: 6px;
+    padding: 20px;
+    width: 100%;
+    margin: 10px 0;
+    color: #FFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.1s background-color ease-in-out;
+}
+
+.ViewAuction .sidebar .bid-button:hover {
+    background-color: lighten(dodgerblue, 5%);
+}
+
+.ViewAuction .sidebar .favorite {
+    background-color: silver;
+    border-radius: 6px;
+    color: #000;
+    font-weight: bold;
+    padding: 20px;
+    width: 100%;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.1s background-color ease-in-out;
+}
+
+.ViewAuction .sidebar .favorite:hover {
+    background-color: lighten(silver, 5%);
+}
