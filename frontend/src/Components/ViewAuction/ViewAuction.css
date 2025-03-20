@@ -13,6 +13,12 @@
     font-size: 1.25em;
 }
 
+.ViewAuction .content .content-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 10px;
+}
+
 .ViewAuction .sidebar {
     width: 30%;
 }
