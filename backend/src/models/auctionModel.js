@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 
-const auctionModel = new Schema({
+const auctionModel = new mongoose.Schema({
     title: {type: String, required: true},
     closingDate: {type: String, required: true}, 
     askingPrice: {type: Number, required: true},
+    user: {type: String, required: true},
     bids: [{
         userId: mongoose.Schema.Types.ObjectId,
         bid: Number,
