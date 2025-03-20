@@ -1,7 +1,7 @@
 .ViewAuction {
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 50px;
 }
 
 .ViewAuction .content {
@@ -10,13 +10,15 @@
 
 .ViewAuction .content .description .title {
     font-weight: bold;
-    font-size: 1.25em;
+    font-size: 1.5em;
 }
 
 .ViewAuction .content .content-footer {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     width: 100%;
-    padding: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 0.8em;
 }
 
 .ViewAuction .sidebar {
@@ -25,7 +27,7 @@
 
 .ViewAuction .sidebar .title {
     font-weight: bold;
-    font-size: 1.25em;
+    font-size: 1.5em;
 }
 
 .ViewAuction .sidebar .expiration-date {
@@ -46,6 +48,7 @@
 .ViewAuction .sidebar .price .amount {
     font-weight: bold;
     flex-basis: 100%;
+    font-size: 1.5em;
 }
 
 .ViewAuction .sidebar .bid-button {

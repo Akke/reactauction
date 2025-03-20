@@ -8,7 +8,7 @@ const AuctionContent = () => {
             </div>
             
             <div className="content-footer">
-                Publicerad 25 Maj 20:23
+                Created at 25 May 20:23
             </div>
         </div>
     );
