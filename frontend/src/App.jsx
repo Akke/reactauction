@@ -1,24 +1,13 @@
-
-
-
-import './App.css'
+import Router from "./Router/Router.jsx";
 import Header from './Components/Header/Header'
 
-
-
-const App= () =>{
-  
-
-  return (<>
-  <Header/>
-  
-
-
-
- 
-  </>)
-
-
+function App() {
+  return (
+    <>
+      <Header />
+      <Router />
+    </>
+  )
 }
 
 export default App
