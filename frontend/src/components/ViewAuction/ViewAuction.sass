@@ -1,16 +1,22 @@
 .ViewAuction
     display: flex
     flex-direction: row
+    gap: 40px
 
     .content
         width: 70%
+
+        .description
+            .title
+                font-weight: bold
+                font-size: 1.25em
 
     .sidebar
         width: 30%
 
         .title
             font-weight: bold
-            font-size: 1.5em
+            font-size: 1.25em
         
         .expiration-date
             margin: 10px 0
@@ -37,6 +43,11 @@
             margin: 10px 0
             color: #FFF
             font-weight: bold
+            cursor: pointer
+            transition: 0.1s background-color ease-in-out
+
+            &:hover
+                background-color: lighten(dodgerblue, 5%)
 
         .favorite
             background-color: silver
@@ -46,3 +57,8 @@
             padding: 20px
             width: 100%
             margin: 10px 0
+            cursor: pointer
+            transition: 0.1s background-color ease-in-out
+
+            &:hover
+                background-color: lighten(silver, 5%)
