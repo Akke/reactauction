@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import classes from './auctionitem.module.css'
 
 
@@ -7,7 +8,9 @@ const AuctionItem = () => {
         <li className={classes.item}>
             <div className={classes.itemData}>
                 <h2>Title</h2>
-                <button>View Auction</button> {/* Ska länka till specifik auktion */}
+                <button>
+                    <NavLink to="/view" className={classes.auctionBtn}>View Auction</NavLink>
+                </button>
             </div>
             <div className={classes.itemData}>
                 <div>

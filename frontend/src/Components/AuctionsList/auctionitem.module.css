@@ -17,6 +17,10 @@
 .itemData button{
     margin: 0;
 }
+.auctionBtn{
+    color: white;
+    text-decoration: none;
+}
 
 .itemData div{
     display: flex;
