@@ -4,11 +4,9 @@ import Layout from "../components/Layout";
 
 const Router = () => {
     return (
-        <>
-            <Routes>
-                <Route exact path="/view" element={<Layout><ViewAuction /></Layout>}></Route>
-            </Routes>
-        </>
+        <Routes>
+            <Route exact path="/view/:id" element={<Layout><ViewAuction /></Layout>}></Route>
+        </Routes>
     )
 }
 
