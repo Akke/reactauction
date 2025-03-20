@@ -4,11 +4,11 @@ const AuctionSidebar = () => {
             <div className="title">Toyota Toy Car</div>
             <div className="expiration-date">
                 <div className="date">Ends May 2015:53</div>
-                <div className="estimate">3 days 5 hours</div>
+                <div className="estimate">— 3 days 5 hours</div>
             </div>
             <div className="price">
                 <div className="asking-price">Asking Price</div>
-                <div className="bids">0 bids</div>
+                <div className="bids">— 0 bids</div>
                 <div className="amount">50 kr</div>
             </div>
             <div className="bid-button">
