@@ -11,8 +11,8 @@ const Header = () => {
   };
 
   return (
-    <>
-      <h1>Reactauction</h1>
+    <div className="header">
+      <div className="logo">ReactAuction</div>
 
       <nav>
         <ul>
@@ -25,7 +25,7 @@ const Header = () => {
      
       
       <button onClick={onLogin}>{isLoggedIn ? 'Logout' : 'Login'}</button>
-    </>
+    </div>
   );
 };
 
