@@ -1,6 +1,6 @@
 import AuctionContent from "./AuctionContent";
 import AuctionSidebar from "./AuctionSidebar";
-import "./ViewAuction.sass";
+import "./ViewAuction.css";
 
 const ViewAuction = () => {
     return (
