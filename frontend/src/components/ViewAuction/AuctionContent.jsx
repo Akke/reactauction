@@ -6,13 +6,13 @@ const AuctionContent = () => {
 
     return (
         <div className="content">
+            <div className="content-note">
+                Created at 25 May 20:23
+            </div>
+
             <div className="description">
                 <div className="title">Beskrivning</div>
                 <p>{auction.description}</p>
-            </div>
-            
-            <div className="content-footer">
-                Created at 25 May 20:23
             </div>
         </div>
     );

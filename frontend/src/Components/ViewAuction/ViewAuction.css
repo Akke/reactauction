@@ -13,12 +13,9 @@
     font-size: 1.5em;
 }
 
-.ViewAuction .content .content-footer {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+.ViewAuction .content .content-note {
     width: 100%;
-    padding-top: 10px;
-    margin-top: 10px;
-    font-size: 0.8em;
+    margin-bottom: 20px;
 }
 
 .ViewAuction .sidebar {
@@ -35,6 +32,7 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+    color: #505050;
 }
 
 .ViewAuction .sidebar .price {
@@ -43,18 +41,21 @@
     flex-wrap: wrap;
     gap: 10px;
     margin: 10px 0;
+    color: #505050;
 }
 
 .ViewAuction .sidebar .price .amount {
     font-weight: bold;
     flex-basis: 100%;
     font-size: 1.5em;
+    margin: 10px 0;
+    color: #121212;
 }
 
 .ViewAuction .sidebar .bid-button {
     background-color: dodgerblue;
     border-radius: 6px;
-    padding: 20px;
+    padding: 15px;
     width: 100%;
     margin: 10px 0;
     color: #FFF;
@@ -64,7 +65,7 @@
 }
 
 .ViewAuction .sidebar .bid-button:hover {
-    background-color: lighten(dodgerblue, 5%);
+    background-color: rgb(57, 156, 255);
 }
 
 .ViewAuction .sidebar .favorite {
@@ -72,7 +73,7 @@
     border-radius: 6px;
     color: #000;
     font-weight: bold;
-    padding: 20px;
+    padding: 15px;
     width: 100%;
     margin: 10px 0;
     cursor: pointer;
@@ -80,5 +81,5 @@
 }
 
 .ViewAuction .sidebar .favorite:hover {
-    background-color: lighten(silver, 5%);
+    background-color: rgb(168, 168, 168);
 }
