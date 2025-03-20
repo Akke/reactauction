@@ -1,0 +1,51 @@
+
+
+.header-container {
+    background-color: black;
+    color: black;
+    padding: 20px;
+    text-align: center;
+  
+  }
+  
+  nav {
+    margin: 20px;
+  }
+  
+ 
+  
+  nav li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  nav a {
+    color: black;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color:blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #21a1f1;
+  }
+  
