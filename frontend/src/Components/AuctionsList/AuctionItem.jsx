@@ -6,17 +6,17 @@ const AuctionItem = () => {
     return (
         <li className={classes.item}>
             <div className={classes.itemData}>
-                <h2>Titel</h2>
-                <button>Gå till auktion</button> {/* Ska länka till specifik auktion */}
+                <h2>Title</h2>
+                <button>View Auction</button> {/* Ska länka till specifik auktion */}
             </div>
             <div className={classes.itemData}>
                 <div>
-                    <span><b>Pris:</b> XXXX kr</span>
-                    <span><b>Säljare:</b> Namn Namnson</span>
+                    <span><b>Price:</b> XXXX kr</span>
+                    <span><b>Seller:</b> Jane Doe</span>
                 </div>
                 <div>
-                    <span><b>Start:</b> Datum</span>
-                    <span><b>Slut:</b> Datum</span>
+                    <span><b>Start:</b> Date</span>
+                    <span><b>End:</b> Date</span>
                 </div>
             </div>
         </li>
