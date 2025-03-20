@@ -1,8 +1,13 @@
+import AuctionContent from "./AuctionContent";
+import AuctionSidebar from "./AuctionSidebar";
+import "./ViewAuction.css";
+
 const ViewAuction = () => {
     return (
-        <>
-            <h1>Hello World!</h1>
-        </>
+        <div className="ViewAuction">
+            <AuctionContent />
+            <AuctionSidebar />
+        </div>     
     );
 }
 

@@ -1,20 +1,9 @@
+import Router from "./Router/Router.jsx";
+import "./App.css";
 
-
-
-import './App.css'
-import Footer from './Components/Header/Footer/Footer'
-import Header from './Components/Header/Header'
-
-
-
-
-const App= () =>{
-  
-
-  return (<>
-  <Header/>
-  <Footer/>
-      <Header />
+function App() {
+  return (
+    <>
       <Router />
     </>
   )
