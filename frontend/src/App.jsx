@@ -14,15 +14,10 @@ const App= () =>{
   return (<>
   <Header/>
   <Footer/>
-  
-  
-
-
-
- 
-  </>)
-
-
+      <Header />
+      <Router />
+    </>
+  )
 }
 
 export default App
