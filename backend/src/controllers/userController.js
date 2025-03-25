@@ -8,15 +8,15 @@ const createUser = async (req, res) => {
     try{
 
         if(!username || !password){
-            res.status(401).json({success: false, message: "Username and password required"})
+           return res.status(401).json({success: false, message: "Username and password required"})
         }
 
         if(password.length < 8){
-            res.status(401).json({success: false, message: "Password needs to be atleast 8"})
+           return res.status(401).json({success: false, message: "Password needs to be atleast 8"})
         }
 
         if(username.length < 3  || username.length > 15){
-            res.status(401).json({success: false, message: "Username needs to be atleast 3 characters and can't be more than 15"})
+           return res.status(401).json({success: false, message: "Username needs to be atleast 3 characters and can't be more than 15"})
         }
 
         function isValidEmail (email){
@@ -35,16 +35,16 @@ const createUser = async (req, res) => {
         }
 
         if(isUsernameTaken){
-            res.status(400).json({success: false, message: "Username taken"})
+           return res.status(400).json({success: false, message: "Username taken"})
         }
 
         
         if(isEmailTaken){
-            res.status(400).json({success: false, message: "Email already in use"})
+           return res.status(400).json({success: false, message: "Email already in use"})
         }
 
         if(!isValidEmail(email)){
-            res.status(401).json({success: false, message: "email invalid" })
+            return res.status(401).json({success: false, message: "email invalid" })
         }
 
         const newUser = new User({
@@ -65,15 +65,15 @@ const loginUser = async (req, res) => {
     const {username, password} = req.body
     try{
         if(!username || !password){
-            res.status(401).json({success: false, message: "Username and password required"})
+            return res.status(401).json({success: false, message: "Username and password required"})
         }
         const user = await User.findOne({username})
         if(!user){
-            res.stauts(401).json({success: false, message: 'User not found'})
+            return res.stauts(401).json({success: false, message: 'User not found'})
         }
         const passwordIsValid = await bcrypt.compare(password, user.password)
         if(!passwordIsValid){
-            res.status(401).json({success: false, message: "Wrong password"})
+            return res.status(401).json({success: false, message: "Wrong password"})
         }
 
         const accessToken = await jwt.sign(

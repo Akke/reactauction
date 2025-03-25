@@ -8,9 +8,17 @@ import axios from 'axios'
     andvändare som skapade
 */
 
-const getAuction = async () => {
-    try{}
-    catch{}
-}
+export const placeBid = async (bid) => {
+    const url = "http://localhost:3000/auction/placeBid"
 
-export default getAuction
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({bid})
+    })
+    const result =  await response.json()
+
+    return result
+}

@@ -163,5 +163,24 @@ const updateBid = async (req, res) => {
     }
 }
 
+const deleteBid = async (req, res) => {
+    const {bidId, auctionId} = req.params
+    try{
+        const query = {"_id":auctionId, "bids": { $elemMatch: { _id: new mongoose.Types.ObjectId(bidId) } } };
+        const bid = await Auction.findOne(query)
+        const idIsMatch = req.user.id == bid.bids[0].userId 
+        if(!idIsMatch){
+            return res.status(400).json({success:false, message: "Can't delete a bid that oyu haven't placed"})
+        }
+        await Auction.updateOne(
+            query,
+            {$pull: {bids: {_id: bidId}}}
+        )
+        res.status(200).json({success: true, message: "Bid successfully deleted"})
+    }catch(error){
+        console.error(error.message)
+        res.status(500).send('Server error')
+    }
+}
 
-module.exports = {createAuction, deleteAuction, updateAuction, placeBid, updateBid, getAuction, getAllAuctions}
+module.exports = {createAuction, deleteAuction, updateAuction, placeBid, updateBid, getAuction, getAllAuctions, deleteBid}
