@@ -8,8 +8,9 @@ const auctionModel = new mongoose.Schema({
     bids: [{
         userId: mongoose.Schema.Types.ObjectId,
         bid: Number,
-        date: String
+        date: String,
     }],
+    isOpen:{type: Boolean, default: true},
     description: {type: String, required: true}
 }, {timestamps: true})
 

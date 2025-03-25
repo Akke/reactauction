@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 
 const verifyAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    console.log(req.cookies.accessToken)
     let token = null
     if(req.cookies.accessToken){
         token = req.cookies.accessToken
