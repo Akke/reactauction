@@ -1,7 +1,16 @@
-export const registerUser = async () => {
-    const url = "localhost:3000/user";
+export const registerUser = async (username, password, email) => {
+    console.log("func call")
+    const url = "http://localhost:3000/user";
 
-    const result = await fetch(url).then((response) => response.json());
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password, email })
+    });
+
+    const result = await response.json();
 
     return result;
 }

@@ -3,6 +3,24 @@
     margin: 0 auto;
 }
 
+.account-register .error {
+    background-color: #c44e4e;
+    border-radius: 4px;
+    padding: 20px;
+    color: #FFF;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.account-register .success {
+    background-color: #63b763;
+    border-radius: 4px;
+    padding: 20px;
+    color: #FFF;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
 .account-register .register-form {}
 
 .account-register .register-form .input-field {
