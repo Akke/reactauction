@@ -65,6 +65,8 @@ const AccountRegister = () => {
                 <InputField type="password" label="" name="verify_password" desc="" placeholder="Verify Password" />
                 <InputField type="text" label="Email" name="email" desc="Enter a valid email for verification purposes." placeholder="Email" />
 
+                <p>By registering an account, you agree to our <a href="/terms" target="_blank">Terms and Conditions</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</p>
+
                 <button type="submit">Create Account</button>
             </form>
         </div>
