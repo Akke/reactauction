@@ -65,15 +65,15 @@ const loginUser = async (req, res) => {
     const {username, password} = req.body
     try{
         if(!username || !password){
-            res.status(401).json({success: false, message: "Username and password required"})
+            return res.status(401).json({success: false, message: "Username and password required"})
         }
         const user = await User.findOne({username})
         if(!user){
-            res.stauts(401).json({success: false, message: 'User not found'})
+            return res.stauts(401).json({success: false, message: 'User not found'})
         }
         const passwordIsValid = await bcrypt.compare(password, user.password)
         if(!passwordIsValid){
-            res.status(401).json({success: false, message: "Wrong password"})
+            return res.status(401).json({success: false, message: "Wrong password"})
         }
 
         const accessToken = await jwt.sign(
