@@ -13,4 +13,14 @@ const getAuction = async () => {
     catch{}
 }
 
+export const getAuctionById = async (id) => {
+    const url = `http://localhost:3000/auction/${id}`
+
+    const response = await fetch(url);
+
+    const result = await response.json();
+
+    return result;
+}
+
 export default getAuction
