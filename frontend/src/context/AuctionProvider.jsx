@@ -1,24 +1,15 @@
 import { createContext, useState } from "react";
+import { getAuctionById } from "../services/auctionApi";
 
 export const AuctionContext = createContext();
 
 const AuctionProvider = ({ children }) => {
     const [auction, setAuction] = useState({});
 
-    const fetchAuction = (id) => {
-        const data = {
-            title: "Testing",
-            closingDate: "12 May",
-            askingPrice: 50,
-            bids: [{
-                userId: 1,
-                bid: 200,
-                date: "12 May"
-            }],
-            description: "Testing"
-        }
+    const fetchAuction = async (id) => {
+        const data = await getAuctionById(id);
 
-        setAuction(data);
+        setAuction(data.data);
     }
 
     return (

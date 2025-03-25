@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 /*
     titel på auctionen
     bud
@@ -13,4 +11,12 @@ const getAuction = async () => {
     catch{}
 }
 
-export default getAuction
+export const getAuctionById = async (id) => {
+    const url = `http://localhost:3000/auction/${id}`
+
+    const response = await fetch(url);
+
+    const result = await response.json();
+
+    return result;
+}
