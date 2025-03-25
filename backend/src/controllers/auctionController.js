@@ -73,6 +73,34 @@ const updateAuction = async (req, res) => {
 
 }
 
+const placeBid = async (req, res) =>{
+    const {id, bid} = req.body
+    try{
+        const auction = await Auction.findById(id)
+        const sortedBids = auction.bids.sort((a, b) => a.bid - b.bid)
+        if(auction.askingPrice > bid){
+            return res.status(406).json({success: false, message: "bid cant be lower than asking price"})
+        }
+        if(sortedBids && sortedBids.length > 0){
+            if(sortedBids[0].bid > bid){
+                return res.status(406).json({success: false, message: "Bid cant be lower than the highest bid"})
+            }
+        }
+        const newBid = {
+            userId: req.user.id,
+            bid: bid,
+            date: new Date()
+        }
+        const addNewBid = await Auction.findByIdAndUpdate(id, 
+            {$push: {bids: newBid}},
+            {new: true, runValidators: true}
+        )
+        res.status(200).json({success: true, message: "Bid successfully placed"})
 
+    }catch(error){
+        console.error(error.message)
+        res.status(500).send('server error')
+    }
+}
 
-module.exports = {createAuction, deleteAuction, updateAuction}
+module.exports = {createAuction, deleteAuction, updateAuction, placeBid}
