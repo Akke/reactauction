@@ -53,7 +53,6 @@ const loginUser = async (req, res) => {
             res.stauts(401).json({success: false, message: 'User not found'})
         }
         const passwordIsValid = await bcrypt.compare(password, user.password)
-        console.log(passwordIsValid)
         if(!passwordIsValid){
             res.status(401).json({success: false, message: "Wrong password"})
         }
