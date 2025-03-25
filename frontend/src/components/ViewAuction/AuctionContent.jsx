@@ -7,7 +7,7 @@ const AuctionContent = () => {
     return (
         <div className="content">
             <div className="content-note">
-                Created at 25 May 20:23
+                Created at {auction.createdAt}
             </div>
 
             <div className="description">

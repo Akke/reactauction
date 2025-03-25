@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 /*
     titel på auctionen
     bud
@@ -22,5 +20,3 @@ export const getAuctionById = async (id) => {
 
     return result;
 }
-
-export default getAuction
