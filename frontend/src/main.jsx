@@ -7,7 +7,7 @@ import AuctionProvider from './context/AuctionProvider.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuctionProvider>
-      <App />
+        <App />
     </AuctionProvider>
   </StrictMode>,
 )
