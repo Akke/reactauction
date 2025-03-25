@@ -19,6 +19,33 @@ const createAuction = async (req, res) => {
     }
 }
 
+const getAuction = async (req, res) => {
+    const {id} = req.params
+    try{
+        const auction = await Auction.findById(id)
+        if(!auction){
+            return res.status(400).json({success: false, message: "Auction not found"})
+        }
+        res.status(200).json({succes: true, data: auction})
+    }catch(error){
+        console.error(error.message)
+        res.status(500).send("server error")
+    }
+}
+
+const getAllAuctions = async (req, res) => {
+    try{
+        const auction = await Auction.find()
+        if(!auction){
+            return res.status(400).json({success: false, message: "Auction not found"})
+        }
+        res.status(200).json({succes: true, data: auction})
+    }catch(error){
+        console.error(error.message)
+        res.status(500).send("server error")
+    }
+}
+
 const deleteAuction = async (req, res) => {
     const {id} = req.params
     if(!id){
@@ -136,4 +163,5 @@ const updateBid = async (req, res) => {
     }
 }
 
-module.exports = {createAuction, deleteAuction, updateAuction, placeBid, updateBid}
+
+module.exports = {createAuction, deleteAuction, updateAuction, placeBid, updateBid, getAuction, getAllAuctions}

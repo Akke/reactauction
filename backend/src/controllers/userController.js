@@ -24,6 +24,25 @@ const createUser = async (req, res) => {
             return pattern.test(email)
         }
 
+        async function isEmailTaken (email){
+            const isEmailTaken  = await User.findOne({email: email})
+            return isEmailTaken
+        }
+
+        async function isUsernameTaken(username){
+            const isUsernameTaken = await User.findOne({username: username})
+            return isTaken
+        }
+
+        if(isUsernameTaken){
+            res.status(400).json({success: false, message: "Username taken"})
+        }
+
+        
+        if(isEmailTaken){
+            res.status(400).json({success: false, message: "Email already in use"})
+        }
+
         if(!isValidEmail(email)){
             res.status(401).json({success: false, message: "email invalid" })
         }
