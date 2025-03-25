@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose')
 const Auction = require('../models/auctionModel')
 
 const createAuction = async (req, res) => {
@@ -77,6 +78,9 @@ const placeBid = async (req, res) =>{
     const {id, bid} = req.body
     try{
         const auction = await Auction.findById(id)
+        if(auction.isOpen == false){
+            return res.status(400).json({success: false, message: "cant place a bid when auction is closed"})
+        }
         const sortedBids = auction.bids.sort((a, b) => a.bid - b.bid)
         if(auction.askingPrice > bid){
             return res.status(406).json({success: false, message: "bid cant be lower than asking price"})
@@ -91,7 +95,7 @@ const placeBid = async (req, res) =>{
             bid: bid,
             date: new Date()
         }
-        const addNewBid = await Auction.findByIdAndUpdate(id, 
+         await Auction.findByIdAndUpdate(id, 
             {$push: {bids: newBid}},
             {new: true, runValidators: true}
         )
@@ -103,4 +107,33 @@ const placeBid = async (req, res) =>{
     }
 }
 
-module.exports = {createAuction, deleteAuction, updateAuction, placeBid}
+const updateBid = async (req, res) => {
+    const {auctionId, bidId, bid} = req.body
+    try{
+        const auction = await Auction.findById(auctionId)
+        if(auction.isOpen == false){
+            return res.status(400).json({success: false, message:"can't edit your bid when auction is closed"})
+        }
+        const myBid = auction.bids.filter((fbid) => fbid.id == bidId)
+        if(!myBid){
+            return res.status(400).json({success: false, message: "You havent placed any bids"})
+        }
+
+        const filteredBids = auction.bids.filter((fbid) => (fbid.userId == req.user.id) && (fbid.bid < bid))
+
+        if(!filteredBids){
+            return res.status(400).json({success: false, message: "Either no bids or  bid to low"})
+        }
+
+        await Auction.updateOne({"_id":auctionId, "bids": { $elemMatch: { _id: new mongoose.Types.ObjectId(bidId) } } },
+            {$set: {"bids.$.bid": bid}}
+        )
+        res.status(200).json({success:true, message: "bid successfully updated"})
+        
+    }catch(error){
+        console.error(error.message)
+        res.status(500).send("server error")
+    }
+}
+
+module.exports = {createAuction, deleteAuction, updateAuction, placeBid, updateBid}
