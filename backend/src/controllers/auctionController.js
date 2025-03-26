@@ -22,9 +22,9 @@ const createAuction = async (req, res) => {
 const getAuction = async (req, res) => {
     const {id} = req.params
     try{
-        const auction = await Auction.findById(id)
-        if(!auction){
-            return res.status(400).json({success: false, message: "Auction not found"})
+        const auction = await Auction.findOne({"_id": id})
+        if(!auction){ 
+            return res.status(404).json({success: false, message: "Auction not found"})
         }
         res.status(200).json({succes: true, data: auction})
     }catch(error){
