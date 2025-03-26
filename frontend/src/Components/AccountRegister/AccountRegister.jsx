@@ -1,7 +1,7 @@
 import { registerUser } from "../../services/userService";
 import "./AccountRegister.css";
 import { useState } from "react";
-import InputField from "./InputField";
+import InputField from "../InputField/InputField";
 
 const AccountRegister = () => {
     const [error, setError] = useState("");
