@@ -1,13 +1,3 @@
-import axios from 'axios'
-
-/*
-    titel på auctionen
-    bud
-    datum när det skapades och slutar
-    beskrivning
-    andvändare som skapade
-*/
-
 export const placeBid = async (id, bid) => {
     const url = "http://localhost:3000/auction/placeBid"
 
