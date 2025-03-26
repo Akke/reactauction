@@ -3,6 +3,21 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+const getUser = async (req, res) => {
+    const { token } = req.body;
+
+    if(!token) return res.status(400).send({success:false,message:"Access forbidden"});
+
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+        const id = decoded.id
+
+        const user = await User.findOne({"_id":id}).select("-password");
+        if(!user) return res.status(404).json({success:false, message:"User does not exist"});
+
+        res.status(200).json({success:true,data:user});
+    })
+}
+
 const createUser = async (req, res) => {
     const {username, password, email} = req.body
     try{
@@ -25,22 +40,22 @@ const createUser = async (req, res) => {
         }
 
         async function isEmailTaken (email){
-            const isEmailTaken  = await User.findOne({email: email})
-            return isEmailTaken
+            const emailCheck  = await User.findOne({email: email})
+            return !!emailCheck
         }
 
         async function isUsernameTaken(username){
-            const isUsernameTaken = await User.findOne({username: username})
-            return isTaken
+            const usernameCheck = await User.findOne({username: username})
+            return !!usernameCheck
         }
 
-        if(isUsernameTaken){
-           return res.status(400).json({success: false, message: "Username taken"})
+
+        if(await isUsernameTaken(username)){
+            return res.status(400).json({success: false, message: "Username taken"})
         }
 
-        
-        if(isEmailTaken){
-           return res.status(400).json({success: false, message: "Email already in use"})
+        if(await isEmailTaken(email)){
+            return res.status(400).json({success: false, message: "Email already in use"})
         }
 
         if(!isValidEmail(email)){
@@ -96,4 +111,4 @@ const loginUser = async (req, res) => {
     }
 }
 
-module.exports = {createUser, loginUser}
+module.exports = {createUser, loginUser, getUser }
