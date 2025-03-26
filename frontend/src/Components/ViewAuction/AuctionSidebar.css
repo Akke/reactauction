@@ -1,0 +1,66 @@
+.ViewAuction .sidebar {
+    width: 30%;
+}
+
+.ViewAuction .sidebar .title {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.ViewAuction .sidebar .expiration-date {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    color: #505050;
+}
+
+.ViewAuction .sidebar .price {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+    color: #505050;
+}
+
+.ViewAuction .sidebar .price .amount {
+    font-weight: bold;
+    flex-basis: 100%;
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #121212;
+}
+
+.ViewAuction .sidebar .bid-button {
+    background-color: #121212;
+    color: white;
+    padding: 20px 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.1s background-color ease-in-out;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.ViewAuction .sidebar .bid-button:hover {
+    background-color: #303030;
+}
+
+.ViewAuction .sidebar .favorite {
+    background-color: silver;
+    color: black;
+    padding: 20px 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.1s background-color ease-in-out;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.ViewAuction .sidebar .favorite:hover {
+    background-color: #cfcfcf;
+}

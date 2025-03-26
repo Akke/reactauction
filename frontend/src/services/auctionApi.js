@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 /*
     titel på auctionen
     bud
@@ -49,4 +47,13 @@ export const updateBid = async (auctionId, bidId, bid) => {
     const result =  await response.json()
 
     return result
+}
+export const getAuctionById = async (id) => {
+    const url = `http://localhost:3000/auction/${id}`
+
+    const response = await fetch(url);
+
+    const result = await response.json();
+
+    return result;
 }
