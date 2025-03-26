@@ -1,3 +1,13 @@
+import axios from 'axios'
+
+/*
+    titel på auctionen
+    bud
+    datum när det skapades och slutar
+    beskrivning
+    andvändare som skapade
+*/
+
 export const placeBid = async (id, bid) => {
     const url = "http://localhost:3000/auction/placeBid"
 
@@ -39,4 +49,13 @@ export const updateBid = async (auctionId, bidId, bid) => {
     const result =  await response.json()
 
     return result
+}
+export const getAuctionById = async (id) => {
+    const url = `http://localhost:3000/auction/${id}`
+
+    const response = await fetch(url);
+
+    const result = await response.json();
+
+    return result;
 }
