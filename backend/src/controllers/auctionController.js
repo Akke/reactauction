@@ -22,6 +22,10 @@ const createAuction = async (req, res) => {
 const getAuction = async (req, res) => {
     const {id} = req.params
     try{
+        const idIsValid = mongoose.Types.ObjectId.isValid(id)
+        if(!idIsValid){
+            return res.status(404).json({success: false, message: "Id is not valid"})
+        }
         const auction = await Auction.findOne({"_id": id})
         if(!auction){ 
             return res.status(404).json({success: false, message: "Auction not found"})
