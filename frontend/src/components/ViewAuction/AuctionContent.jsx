@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
+import "./AuctionContent.css";
 
 const AuctionContent = () => {
     const { auction } = useContext(AuctionContext);

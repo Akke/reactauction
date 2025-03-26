@@ -1,0 +1,16 @@
+.auction-not-found {
+    background-color: #c44e4e;
+    border-radius: 4px;
+    padding: 20px;
+    color: #FFF;
+    margin-bottom: 20px;
+}
+
+.auction-not-found h1 {
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.auction-not-found p:last-child {
+    margin-bottom: 0;
+}

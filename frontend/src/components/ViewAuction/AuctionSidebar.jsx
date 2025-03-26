@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
+import "./AuctionSidebar.css";
 
 const AuctionSidebar = () => {
     const { auction } = useContext(AuctionContext);
