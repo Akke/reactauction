@@ -37,9 +37,12 @@ const AuctionSidebar = () => {
                 <div className="bids">0 bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
-            <div className="bid-button">
-                Add Bid
-            </div>
+            {auction.user != 1 ? (
+                <div className="bid-button">
+                    Add Bid
+                </div>
+            ) : (<></>)}
+            
             <div className="favorite">
                 Add to Favorites
             </div>
