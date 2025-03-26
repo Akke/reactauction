@@ -3,20 +3,35 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+const getUser = async (req, res) => {
+    const { token } = req.body;
+
+    if(!token) return res.status(400).send({success:false,message:"Access forbidden"});
+
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+        const id = decoded.id
+
+        const user = await User.findOne({"_id":id}).select("-password");
+        if(!user) return res.status(404).json({success:false, message:"User does not exist"});
+
+        res.status(200).json({success:true,data:user});
+    })
+}
+
 const createUser = async (req, res) => {
     const {username, password, email} = req.body
     try{
 
         if(!username || !password){
-            res.status(401).json({success: false, message: "Username and password required"})
+            return res.status(401).json({success: false, message: "Username and password required"})
         }
 
         if(password.length < 8){
-            res.status(401).json({success: false, message: "Password needs to be atleast 8"})
+            return res.status(401).json({success: false, message: "Password needs to be atleast 8"})
         }
 
         if(username.length < 3  || username.length > 15){
-            res.status(401).json({success: false, message: "Username needs to be atleast 3 characters and can't be more than 15"})
+            return res.status(401).json({success: false, message: "Username needs to be atleast 3 characters and can't be more than 15"})
         }
 
         function isValidEmail (email){
@@ -25,26 +40,25 @@ const createUser = async (req, res) => {
         }
 
         async function isEmailTaken (email){
-            const isEmailTaken  = await User.findOne({email: email})
-            return isEmailTaken
+            const emailCheck  = await User.findOne({email: email})
+            return !!emailCheck
         }
 
         async function isUsernameTaken(username){
-            const isUsernameTaken = await User.findOne({username: username})
-            return isTaken
+            const usernameCheck = await User.findOne({username: username})
+            return !!usernameCheck
         }
 
-        if(isUsernameTaken){
-            res.status(400).json({success: false, message: "Username taken"})
+        if(await isUsernameTaken(username)){
+            return res.status(400).json({success: false, message: "Username taken"})
         }
 
-        
-        if(isEmailTaken){
-            res.status(400).json({success: false, message: "Email already in use"})
+        if(await isEmailTaken(email)){
+            return res.status(400).json({success: false, message: "Email already in use"})
         }
 
         if(!isValidEmail(email)){
-            res.status(401).json({success: false, message: "email invalid" })
+            return res.status(401).json({success: false, message: "email invalid" })
         }
 
         const newUser = new User({
@@ -69,7 +83,7 @@ const loginUser = async (req, res) => {
         }
         const user = await User.findOne({username})
         if(!user){
-            return res.stauts(401).json({success: false, message: 'User not found'})
+            return res.status(401).json({success: false, message: 'User not found'})
         }
         const passwordIsValid = await bcrypt.compare(password, user.password)
         if(!passwordIsValid){
@@ -96,4 +110,4 @@ const loginUser = async (req, res) => {
     }
 }
 
-module.exports = {createUser, loginUser}
+module.exports = {createUser, loginUser, getUser }
