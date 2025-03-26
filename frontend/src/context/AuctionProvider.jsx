@@ -10,6 +10,8 @@ const AuctionProvider = ({ children }) => {
         const data = await getAuctionById(id);
 
         setAuction(data.data);
+
+        return data.data;
     }
 
     return (
