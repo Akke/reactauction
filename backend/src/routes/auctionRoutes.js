@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const {createAuction, deleteAuction, updateAuction, placeBid, updateBid, getAuction, getAllAuctions} = require('../controllers/auctionController')
+const {createAuction, deleteAuction, updateAuction, placeBid, updateBid, getAuction, getAllAuctions, deleteBid} = require('../controllers/auctionController')
 const {verifyAuth} = require('../middleware/authMiddleware')
 
 router.delete('/:id', [verifyAuth], deleteAuction)
+router.delete('/auctionId/:auctionId/bid/:bidId', [verifyAuth], deleteBid)
 router.post('/', [verifyAuth], createAuction)
 router.post('/placeBid', [verifyAuth], placeBid)
 router.get('/', getAllAuctions)
