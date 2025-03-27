@@ -2,14 +2,15 @@ const { default: mongoose } = require('mongoose')
 const Auction = require('../models/auctionModel')
 
 const createAuction = async (req, res) => {
-    const {title, closingDate, askingPrice, description} = req.body
+    const {title, closingDate, askingPrice, description, user} = req.body
     try{  
         const newAuction = new Auction({
             title: title,
             closingDate: closingDate,
             askingPrice: askingPrice,
             description: description,
-            user: req.user.id
+            user: user // Temporary user handling
+            // user: req.user.id
         })
         await newAuction.save()
         res.status(200).json({success: true, message: 'successfully created new auction'})

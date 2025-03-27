@@ -57,3 +57,17 @@ export const getAuctionById = async (id) => {
 
     return result;
 }
+
+export const createAuction = async (title, closingDate, askingPrice, description, user) => {
+    const url = "http://localhost:3000/auction"
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({title, closingDate, askingPrice, description, user})
+    })
+
+    return await response.json()
+}
