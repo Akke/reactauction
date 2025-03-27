@@ -5,7 +5,6 @@ import "./ViewAuction.css";
 import { useContext, useEffect, useState } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
 import AuctionNotFound from "./AuctionNotFound";
-import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
 
 const ViewAuction = () => {
     const { id } = useParams();
@@ -46,7 +45,6 @@ const ViewAuction = () => {
         <div className="ViewAuction">
             <AuctionContent />
             <AuctionSidebar />
-            <PlaceBid/>
         </div>     
     );
 }
