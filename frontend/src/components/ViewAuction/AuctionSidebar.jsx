@@ -1,4 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import BudLista from "../Budlista/BudLista";
+>>>>>>> fe6100c2a13b7d2966e7a1414b4d3bc5416296ad
 import { useContext, useRef } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
@@ -33,10 +37,6 @@ const AuctionSidebar = () => {
         return result;
     }
 
-    if(user && (auction.user != user.id)) {
-        console.log(auction.user, user)
-    }
-
     const handleBidButton = () =>{
         const modalStyle = modalRef.current.style
         modalStyle.display = "block"
@@ -56,15 +56,12 @@ const AuctionSidebar = () => {
                 <div className="bids">0 bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
+            <BudLista/>
             {user && (auction.user != user.id) ? (
                 <div onClick={handleBidButton("add")} className="bid-button">
                     Add Bid
                 </div>
             ) : (<></>)}
-            
-            <div className="favorite">
-                Add to Favorites
-            </div>
         </div>
     );
 }
