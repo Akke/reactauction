@@ -27,10 +27,6 @@ const AuctionSidebar = () => {
         return result;
     }
 
-    if(user && (auction.user != user.id)) {
-        console.log(auction.user, user)
-    }
-
     return (
         <div className="sidebar">
             <div className="title">{auction.title}</div>
@@ -43,15 +39,11 @@ const AuctionSidebar = () => {
                 <div className="bids">0 bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
-            {user && (auction.user != user.id) ? (
+            {user && (auction.user != user._id) ? (
                 <div className="bid-button">
                     Add Bid
                 </div>
             ) : (<></>)}
-            
-            <div className="favorite">
-                Add to Favorites
-            </div>
         </div>
     );
 }
