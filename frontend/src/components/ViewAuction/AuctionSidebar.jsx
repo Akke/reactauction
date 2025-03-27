@@ -46,7 +46,7 @@ const AuctionSidebar = () => {
             </div>
             <div className="price">
                 <div className="asking-price">Asking Price</div>
-                <div className="bids">0 bids</div>
+                <div className="bids">{auction.bids.length} bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
             <BudLista/>
