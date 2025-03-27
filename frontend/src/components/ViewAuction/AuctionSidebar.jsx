@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import { useContext, useRef } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
 import { AuthContext } from "../../context/AuthProvider";
 import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
+=======
+import BudLista from "../Budlista/BudLista";
+>>>>>>> 7a48557 ( bodified)
 
 const AuctionSidebar = () => {
     const { auction } = useContext(AuctionContext);
