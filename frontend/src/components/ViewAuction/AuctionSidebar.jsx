@@ -1,3 +1,5 @@
+import BudLista from "../Budlista/BudLista";
+
 const AuctionSidebar = () => {
     return (
         <div className="sidebar">
@@ -11,6 +13,7 @@ const AuctionSidebar = () => {
                 <div className="bids">— 0 bids</div>
                 <div className="amount">50 kr</div>
             </div>
+            <BudLista/>
             <div className="bid-button">
                 Add Bid
             </div>
