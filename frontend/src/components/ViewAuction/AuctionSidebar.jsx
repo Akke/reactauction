@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 import BudLista from "../Budlista/BudLista";
-=======
 import { useContext, useRef } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
 import { AuthContext } from "../../context/AuthProvider";
 import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
->>>>>>> df44f5afdaaf927bf012f771b7295829b844a90b
 
 const AuctionSidebar = () => {
     const { auction } = useContext(AuctionContext);
@@ -53,18 +50,10 @@ const AuctionSidebar = () => {
             </div>
             <div className="price">
                 <div className="asking-price">Asking Price</div>
-<<<<<<< HEAD
-                <div className="bids">— 0 bids</div>
-                <div className="amount">50 kr</div>
-            </div>
-            <BudLista/>
-            <div className="bid-button">
-                Add Bid
-=======
                 <div className="bids">0 bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
->>>>>>> df44f5afdaaf927bf012f771b7295829b844a90b
             </div>
+            <BudLista/>
             {user && (auction.user != user.id) ? (
                 <div onClick={handleBidButton} className="bid-button">
                     Add Bid
