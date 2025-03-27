@@ -8,24 +8,20 @@ import { AuctionContext } from '../../context/AuctionProvider'
 
 const PlaceBid = forwardRef((props, ref) => {
     const { addBid } = useContext(AuctionContext);
+    const user = JSON.parse(localStorage.getItem('user'))
+
 
     const [error, setError] = useState("");
 
     const {id} = useParams()
-
-    const handleSubmitBid = async (e, status) => {
+    const handleSubmitBid = async (e) => {
         e.preventDefault();
         setError("");
 
         const bidData = e.target.bid.value
-        let result;
 
-        if(status == 'add'){
-            result = await addBid(id, bidData);
-        }
-        if(status == 'edit'){
-            result = await updateBid(auctionId, bidId, bidData) 
-        }
+        const result = await addBid(id, bidData);
+        
 
         if(result.success) {
             const modalStyle = ref.current.style
@@ -51,7 +47,7 @@ const PlaceBid = forwardRef((props, ref) => {
                 {error ? (
                     <div className="error">{error}</div>
                 ) : (<></>)}
-                <form onSubmit={(e) => handleSubmitBid(e, 'add')}>
+                <form onSubmit={handleSubmitBid}>
                     <InputField type="text" label="Bid amount" name="bid" desc="Place your bid here" placeholder="Bid" />
                     <button type="submit">Place bid</button>
                 </form>
