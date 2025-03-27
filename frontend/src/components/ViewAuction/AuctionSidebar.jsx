@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/AuthProvider";
 const AuctionSidebar = () => {
     const { auction } = useContext(AuctionContext);
     const { user } = useContext(AuthContext);
-    console.log(user)
 
     const formatDate = (dateTime) => {
         const formatted = new Date(dateTime);
@@ -28,8 +27,8 @@ const AuctionSidebar = () => {
         return result;
     }
 
-    if(user) {
-        console.log(auction.user, user.id)
+    if(user && (auction.user != user.id)) {
+        console.log(auction.user, user)
     }
 
     return (

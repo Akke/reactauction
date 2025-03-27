@@ -33,10 +33,9 @@ const AccountLogin = () => {
         const result = await loginUser(username, password);
 
         if(result.success) {
-            console.log(result)
             const userData = await getUser(result.accessToken);
             if(userData) {
-                login(userData.data);
+                login({...userData.data, token: result.accessToken});
                 e.target.reset();
                 navigate("/");
             }
