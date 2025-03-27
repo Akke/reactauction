@@ -1,7 +1,7 @@
 import './PlaceBid.css'
 import {useParams} from 'react-router-dom'
 import InputField from '../InputField/InputField'
-import {placeBid} from '../../services/auctionApi'
+import {placeBid, updateBid} from '../../services/auctionApi'
 import { forwardRef, useContext, useState } from "react"
 import { AuctionContext } from '../../context/AuctionProvider'
 
@@ -13,13 +13,19 @@ const PlaceBid = forwardRef((props, ref) => {
 
     const {id} = useParams()
 
-    const handleSubmitBid = async (e) => {
+    const handleSubmitBid = async (e, status) => {
         e.preventDefault();
         setError("");
 
         const bidData = e.target.bid.value
+        let result;
 
-        const result = await addBid(id, bidData);
+        if(status == 'add'){
+            result = await addBid(id, bidData);
+        }
+        if(status == 'edit'){
+            result = await updateBid(auctionId, bidId, bidData) 
+        }
 
         if(result.success) {
             const modalStyle = ref.current.style
@@ -45,7 +51,7 @@ const PlaceBid = forwardRef((props, ref) => {
                 {error ? (
                     <div className="error">{error}</div>
                 ) : (<></>)}
-                <form onSubmit={handleSubmitBid}>
+                <form onSubmit={(e) => handleSubmitBid(e, 'add')}>
                     <InputField type="text" label="Bid amount" name="bid" desc="Place your bid here" placeholder="Bid" />
                     <button type="submit">Place bid</button>
                 </form>
