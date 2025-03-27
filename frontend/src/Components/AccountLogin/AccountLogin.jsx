@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import InputField from "../InputField/InputField";
 import "./AccountLogin.css";
 import { getUser, loginUser } from "../../services/userService";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 const AccountLogin = () => {
     const [error, setError] = useState("");
-
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onFormSubmit = async (e) => {
@@ -35,7 +36,7 @@ const AccountLogin = () => {
             console.log(result)
             const userData = await getUser(result.accessToken);
             if(userData) {
-                localStorage.setItem("user", JSON.stringify(userData.data));
+                login(userData.data);
                 e.target.reset();
                 navigate("/");
             }
@@ -55,6 +56,7 @@ const AccountLogin = () => {
                 <InputField type="password" label="Password" name="password" desc="" placeholder="Password" />
 
                 <button type="submit">Login</button>
+                <NavLink to="/register"><button>Create Account</button></NavLink>
             </form>
         </div>
     );

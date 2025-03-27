@@ -60,3 +60,14 @@
 .header button:hover {
   background-color: #303030;
 }
+
+.header .login {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.header .login:hover {
+  text-decoration: none;
+  color: inherit;
+}

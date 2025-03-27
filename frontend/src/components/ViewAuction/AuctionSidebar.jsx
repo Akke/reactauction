@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
+import { AuthContext } from "../../context/AuthProvider";
 
 const AuctionSidebar = () => {
     const { auction } = useContext(AuctionContext);
+    const { user } = useContext(AuthContext);
+    console.log(user)
 
     const formatDate = (dateTime) => {
         const formatted = new Date(dateTime);
@@ -25,6 +28,10 @@ const AuctionSidebar = () => {
         return result;
     }
 
+    if(user) {
+        console.log(auction.user, user.id)
+    }
+
     return (
         <div className="sidebar">
             <div className="title">{auction.title}</div>
@@ -37,7 +44,7 @@ const AuctionSidebar = () => {
                 <div className="bids">0 bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
-            {auction.user != 1 ? (
+            {user && (auction.user != user.id) ? (
                 <div className="bid-button">
                     Add Bid
                 </div>

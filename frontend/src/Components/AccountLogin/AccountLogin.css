@@ -20,3 +20,8 @@
     margin-bottom: 20px;
     font-weight: bold;
 }
+
+.account-login a {
+    display: flex;
+    margin-top: 10px;
+}
