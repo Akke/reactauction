@@ -1,16 +1,23 @@
-import React, { useContext, useState } from 'react';
+import { useContext } from 'react';
+import { AuctionContext } from '../../context/AuctionProvider';
 
 const BudLista = () => {
-    const { auction } = useContext(AudioContext);
+    const { auction } = useContext(AuctionContext);
 
     const bids = auction.bids
+
+    const formatDate = (dateTime) => {
+        const formatted = new Date(dateTime);
+        const result = `${formatted.getFullYear()}-${formatted.getMonth()}-${formatted.getDate()} ${formatted.getHours()}:${formatted.getMinutes()}`;
+        return result;
+    }
 
     return (
         <div>
             <ul> 
                 {bids.map((bid, index) => (
                     <li key={index}>
-                        {`Bud: ${bid.amount} kr, Datum: ${bid.date}`}
+                        <b>{formatDate(bid.date)}</b> • {bid.bid}kr
                     </li>
                    
                 ))}
@@ -21,22 +28,3 @@ const BudLista = () => {
 
 export default BudLista;
 
-
-// const BudLista = () =>{
-
-//     return(
-// <>
-//         <ul>
-
-//         <li>Datum</li>
-//         <li>Pris</li>
-//         <li></li>
-
-
-
-//         </ul>
-
-// </>
-//     )
-// }
-// export default BudLista

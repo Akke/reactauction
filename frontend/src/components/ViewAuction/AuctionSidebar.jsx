@@ -30,10 +30,6 @@ const AuctionSidebar = () => {
         return result;
     }
 
-    if(user && (auction.user != user.id)) {
-        console.log(auction.user, user)
-    }
-
     const handleBidButton = () =>{
         const modalStyle = modalRef.current.style
         modalStyle.display = "block"
