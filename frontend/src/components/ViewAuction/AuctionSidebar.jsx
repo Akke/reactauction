@@ -4,6 +4,7 @@ import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
 import { AuthContext } from "../../context/AuthProvider";
 import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
+import BudLista from "../Budlista/BudLista";
 
 const AuctionSidebar = () => {
     const { auction } = useContext(AuctionContext);
@@ -30,11 +31,6 @@ const AuctionSidebar = () => {
         return result;
     }
 
-    const handleBidButton = () =>{
-        const modalStyle = modalRef.current.style
-        modalStyle.display = "block"
-    }
-
     return (
         <div className="sidebar">
             <PlaceBid ref={modalRef} />
@@ -49,9 +45,8 @@ const AuctionSidebar = () => {
                 <div className="bids">0 bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
-            <BudLista/>
-            {user && (auction.user != user.id) ? (
-                <div onClick={handleBidButton("add")} className="bid-button">
+            {user && (auction.user != user._id) ? (
+                <div className="bid-button">
                     Add Bid
                 </div>
             ) : (<></>)}
