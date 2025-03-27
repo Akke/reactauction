@@ -1,11 +1,14 @@
-import { useContext } from "react";
+import BudLista from "../Budlista/BudLista";
+import { useContext, useRef } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
 import { AuthContext } from "../../context/AuthProvider";
+import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
 
 const AuctionSidebar = () => {
     const { auction } = useContext(AuctionContext);
     const { user } = useContext(AuthContext);
+    const modalRef = useRef(null);
 
     const formatDate = (dateTime) => {
         const formatted = new Date(dateTime);
@@ -27,8 +30,19 @@ const AuctionSidebar = () => {
         return result;
     }
 
+    if(user && (auction.user != user.id)) {
+        console.log(auction.user, user)
+    }
+
+    const handleBidButton = () =>{
+        const modalStyle = modalRef.current.style
+        modalStyle.display = "block"
+    }
+
     return (
         <div className="sidebar">
+            <PlaceBid ref={modalRef} />
+
             <div className="title">{auction.title}</div>
             <div className="expiration-date">
                 <div className="date">Ends {formatDate(auction.closingDate)}</div>
@@ -39,8 +53,9 @@ const AuctionSidebar = () => {
                 <div className="bids">0 bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
-            {user && (auction.user != user._id) ? (
-                <div className="bid-button">
+            <BudLista/>
+            {user && (auction.user != user.id) ? (
+                <div onClick={handleBidButton} className="bid-button">
                     Add Bid
                 </div>
             ) : (<></>)}
