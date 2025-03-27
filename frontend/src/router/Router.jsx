@@ -23,7 +23,9 @@ const Router = () => {
         <>
             <Routes>
                 <Route exact path="/" element={<Layout><AuctionsList/></Layout>}></Route>
-                <Route exact path="/register" element={<Layout><AccountRegister/></Layout>}></Route>
+                <Route exact path="/register" element={<PublicRoute isAuthenticated={user !== null} />}>
+                    <Route index element={<Layout><AccountRegister /></Layout>} />
+                </Route>
                 <Route exact path="/login" element={<PublicRoute isAuthenticated={user !== null} />}>
                     <Route index element={<Layout><AccountLogin /></Layout>} />
                 </Route>
