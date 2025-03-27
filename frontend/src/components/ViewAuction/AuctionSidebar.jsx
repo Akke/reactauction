@@ -59,10 +59,6 @@ const AuctionSidebar = () => {
                     Add Bid
                 </div>
             ) : (<></>)}
-            
-            <div className="favorite">
-                Add to Favorites
-            </div>
         </div>
     );
 }
