@@ -1,3 +1,4 @@
+import BudLista from "../Budlista/BudLista";
 import { useContext, useRef } from "react";
 import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
@@ -52,6 +53,7 @@ const AuctionSidebar = () => {
                 <div className="bids">0 bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
+            <BudLista/>
             {user && (auction.user != user.id) ? (
                 <div onClick={handleBidButton("add")} className="bid-button">
                     Add Bid
