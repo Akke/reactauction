@@ -2,18 +2,23 @@ import styled from 'styled-components'
 import './PlaceBid.css'
 import {useParams} from 'react-router-dom'
 import InputField from '../InputField/InputField'
-import {placeBid} from '../../services/auctionApi'
+import {placeBid, updateBid} from '../../services/auctionApi'
 import { forwardRef } from "react"
 
 
 const PlaceBid = forwardRef((props, ref) => {
     const {id} = useParams()
 
-    const handleSubmitBid = async (e) => {
+    const handleSubmitBid = async (e, state) => {
         e.preventDefault()
-
         const bidData = e.target.bid.value
-        const result = await placeBid(id, bidData)
+
+        if(state == "add"){
+            const result = await placeBid(id, bidData)
+        }
+        if(state == 'edit'){
+            const result = await updateBid(auctionId, bidId, bid)
+        }
 
         const modalStyle = ref.current.style
         modalStyle.display = "none"
