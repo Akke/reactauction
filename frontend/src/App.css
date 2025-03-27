@@ -2,3 +2,19 @@
     width: 80%;
     margin: 0 auto;
 }
+
+button {
+    background-color: #121212;
+    color: white;
+    padding: 20px 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.1s background-color ease-in-out;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #303030;
+}

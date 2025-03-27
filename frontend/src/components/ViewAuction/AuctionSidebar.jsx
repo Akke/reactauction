@@ -1,22 +1,76 @@
+<<<<<<< HEAD
 import BudLista from "../Budlista/BudLista";
+=======
+import { useContext, useRef } from "react";
+import { AuctionContext } from "../../context/AuctionProvider";
+import "./AuctionSidebar.css";
+import { AuthContext } from "../../context/AuthProvider";
+import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
+>>>>>>> df44f5afdaaf927bf012f771b7295829b844a90b
 
 const AuctionSidebar = () => {
+    const { auction } = useContext(AuctionContext);
+    const { user } = useContext(AuthContext);
+    const modalRef = useRef(null);
+
+    const formatDate = (dateTime) => {
+        const formatted = new Date(dateTime);
+        const result = `${formatted.getFullYear()}-${formatted.getMonth()}-${formatted.getDate()}`;
+        return result;
+    }
+
+    const getDateDifference = (dateTimeNow, dateTimeThen) => {
+        const timeNow = new Date(dateTimeNow);
+        const timeThen = new Date(dateTimeThen);
+        const diff = timeThen - timeNow;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        const result = `${days}d ${hours}h ${minutes}m`;
+
+        return result;
+    }
+
+    if(user && (auction.user != user.id)) {
+        console.log(auction.user, user)
+    }
+
+    const handleBidButton = () =>{
+        const modalStyle = modalRef.current.style
+        modalStyle.display = "block"
+    }
+
     return (
         <div className="sidebar">
-            <div className="title">Toyota Toy Car</div>
+            <PlaceBid ref={modalRef} />
+
+            <div className="title">{auction.title}</div>
             <div className="expiration-date">
-                <div className="date">Ends May 2015:53</div>
-                <div className="estimate">— 3 days 5 hours</div>
+                <div className="date">Ends {formatDate(auction.closingDate)}</div>
+                <div className="estimate">{getDateDifference(auction.createdAt, auction.closingDate)}</div>
             </div>
             <div className="price">
                 <div className="asking-price">Asking Price</div>
+<<<<<<< HEAD
                 <div className="bids">— 0 bids</div>
                 <div className="amount">50 kr</div>
             </div>
             <BudLista/>
             <div className="bid-button">
                 Add Bid
+=======
+                <div className="bids">0 bids</div>
+                <div className="amount">{auction.askingPrice} kr</div>
+>>>>>>> df44f5afdaaf927bf012f771b7295829b844a90b
             </div>
+            {user && (auction.user != user.id) ? (
+                <div onClick={handleBidButton} className="bid-button">
+                    Add Bid
+                </div>
+            ) : (<></>)}
+            
             <div className="favorite">
                 Add to Favorites
             </div>

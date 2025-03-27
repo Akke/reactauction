@@ -1,14 +1,18 @@
 
+import { NavLink } from "react-router";
+import { AuthContext } from "../../context/AuthProvider";
 import "./Header.css"
 
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 const Header = () => {
+  const { user, logout } = useContext(AuthContext);
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const onLogin = () => {
-    setIsLoggedIn(!isLoggedIn);  
-  };
+  useEffect(() => {
+    setIsLoggedIn(!!user);
+  }, [user]);
 
   return (
     <div className="header">
@@ -23,8 +27,11 @@ const Header = () => {
       </nav>
 
      
-      
-      <button onClick={onLogin}>{isLoggedIn ? 'Logout' : 'Login'}</button>
+      {!isLoggedIn ? (
+        <NavLink className="login" to="/login"><button>Login</button></NavLink>
+      ) : (
+        <button onClick={logout}>Logout</button>
+      )}
     </div>
   );
 };

@@ -1,0 +1,27 @@
+.account-login {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.account-login .error {
+    background-color: #c44e4e;
+    border-radius: 4px;
+    padding: 20px;
+    color: #FFF;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.account-login .success {
+    background-color: #63b763;
+    border-radius: 4px;
+    padding: 20px;
+    color: #FFF;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.account-login a {
+    display: flex;
+    margin-top: 10px;
+}
