@@ -36,3 +36,12 @@
 .close-button{
     cursor: pointer;
 }
+
+.error {
+    background-color: #c44e4e;
+    border-radius: 4px;
+    padding: 20px;
+    color: #FFF;
+    margin-bottom: 20px;
+    font-weight: bold;
+}

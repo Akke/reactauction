@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { getAuctionById } from "../services/auctionApi";
+import { getAuctionById, placeBid } from "../services/auctionApi";
 
 export const AuctionContext = createContext();
 
@@ -14,8 +14,15 @@ const AuctionProvider = ({ children }) => {
         return data.data;
     }
 
+    const addBid = async (id, bidData) => {
+        const result = await placeBid(id, bidData);
+        fetchAuction(id);
+
+        return result;
+    }
+
     return (
-        <AuctionContext.Provider value={{ auction, fetchAuction }}>
+        <AuctionContext.Provider value={{ auction, fetchAuction, addBid }}>
             {children}
         </AuctionContext.Provider>
     );
