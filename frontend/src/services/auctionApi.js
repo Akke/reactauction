@@ -62,3 +62,11 @@ export const getAuctionById = async (id) => {
 
     return result;
 }
+
+export const getAllAuctions = async () => {
+    const url = "http://localhost:3000/auction"
+
+    const auctions = await fetch(url).then(response => response.json())
+
+    return auctions
+}
