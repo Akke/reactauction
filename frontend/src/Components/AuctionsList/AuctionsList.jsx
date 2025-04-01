@@ -28,9 +28,7 @@ const AuctionsList = () => {
 
     return (<>
         <h1>All Auctions</h1>
-        <button>
-            <NavLink className={classes.newBtn} to="/newauction">Add new</NavLink>
-        </button>
+        <NavLink className={classes.newBtn} to="/newauction"><button>Create Auction</button></NavLink>
 
         {loading && "Loading..."}
         {error && "No auctions found"}

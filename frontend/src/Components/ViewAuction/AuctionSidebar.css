@@ -48,6 +48,11 @@
     background-color: #303030;
 }
 
+.ViewAuction .sidebar .bid-button.closed {
+    background-color: gray;
+    cursor:default;
+}
+
 .ViewAuction .sidebar .favorite {
     background-color: silver;
     color: black;

@@ -10,5 +10,10 @@
 .ViewAuction .content .content-note {
     width: 100%;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
 }
 
+.ViewAuction .content .content-note .close-auction {
+    margin-left: auto;
+}
