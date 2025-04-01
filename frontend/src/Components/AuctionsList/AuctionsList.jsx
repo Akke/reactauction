@@ -1,34 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import classes from './auctionslist.module.css'
 import AuctionItem from './AuctionItem'
-import { getAllAuctions } from '../../services/auctionApi'
+import { AuctionContext } from '../../context/AuctionProvider'
 
 const AuctionsList = () => {
-    const [auctions, setAuctions] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+    const { auction, auctions, getAuctions } = useContext(AuctionContext);
+    const [auctionList, setAuctionList] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         setLoading(true);
         setError(false);
         
-        getAllAuctions().then(response => {
-            setAuctions(response.data)
-            console.log(auctions)
-            // setLoading(false)
+        const getAllAuctions = async () => {
+            const result = await getAuctions();
+            return result;
+        }
+
+        getAllAuctions().then((data) => {
+            const sortedList = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            setAuctionList(sortedList);
+            setLoading(false);
         })
-    }, []) 
+    }, []);
 
     return (<>
         <h1>Alla Auktioner</h1>
         {loading && "Loading..."}
         {error && "No auctions found"}
         <ul className={classes.auctionList}>
-            {auctions && 
-                console.log(auctions) && // This prints array of 3 items
-                auctions.map(auction => {
-                    // console.log(auction) // This also prints data as expected
-                    <AuctionItem key={auction._id} />
+            {
+                auctionList.map(auction => {
+                    return (
+                        <AuctionItem key={auction._id} auction={auction} />
+                    )
                 })
             }
         </ul>
