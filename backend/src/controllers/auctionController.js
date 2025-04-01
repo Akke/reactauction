@@ -23,9 +23,13 @@ const createAuction = async (req, res) => {
 const getAuction = async (req, res) => {
     const {id} = req.params
     try{
-        const auction = await Auction.findById(id)
-        if(!auction){
-            return res.status(400).json({success: false, message: "Auction not found"})
+        const idIsValid = mongoose.Types.ObjectId.isValid(id)
+        if(!idIsValid){
+            return res.status(404).json({success: false, message: "Id is not valid"})
+        }
+        const auction = await Auction.findOne({"_id": id})
+        if(!auction){ 
+            return res.status(404).json({success: false, message: "Auction not found"})
         }
         res.status(200).json({succes: true, data: auction})
     }catch(error){
@@ -131,7 +135,7 @@ const placeBid = async (req, res) =>{
 
     }catch(error){
         console.error(error.message)
-        res.status(500).send('server error')
+        res.status(500).json({message:'server error'})
     }
 }
 

@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 /*
     titel på auctionen
     bud
@@ -9,10 +11,13 @@
 export const placeBid = async (id, bid) => {
     const url = "http://localhost:3000/auction/placeBid"
 
+    console.log(id)
     const response = await fetch(url, {
         method: "POST",
+        
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`
         },
         body: JSON.stringify({id, bid})
     })

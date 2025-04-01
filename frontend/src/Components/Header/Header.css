@@ -30,6 +30,8 @@
 
 .header nav li {
   display: flex;
+  align-items: center;
+
 }
 
 .header nav a {
@@ -39,6 +41,7 @@
   padding: 20px;
   transition: border-color 0.1s ease-in-out;
   text-transform: uppercase;
+  align-items: center;
 }
 
 .header nav a:hover {
@@ -59,4 +62,15 @@
 
 .header button:hover {
   background-color: #303030;
+}
+
+.header .login {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.header .login:hover {
+  text-decoration: none;
+  color: inherit;
 }
