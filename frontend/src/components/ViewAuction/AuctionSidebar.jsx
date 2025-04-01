@@ -5,9 +5,13 @@ import "./AuctionSidebar.css";
 import { AuthContext } from "../../context/AuthProvider";
 import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
 import { HighestBid } from "../Budlista/HighstBid";
+import { deleteAuction } from "../../services/auctionApi";
+import { useNavigate } from "react-router";
 
 const AuctionSidebar = () => {
     const { auction, isAuctionOpen } = useContext(AuctionContext);
+    const navigate = useNavigate()
+    const { auction } = useContext(AuctionContext);
     const { user } = useContext(AuthContext);
     const modalRef = useRef(null);
 
@@ -34,6 +38,13 @@ const AuctionSidebar = () => {
     const handleBidButton = () =>{
         const modalStyle = modalRef.current.style
         modalStyle.display = "block"
+    }
+
+    const handleDeleteBtn = async (id) => {
+        const result  = await deleteAuction(id)
+        if(result.success){
+            navigate("/")
+        }
     }
 
     return (
@@ -64,6 +75,11 @@ const AuctionSidebar = () => {
                     </div>
                 )
             ) : (<></>)}
+            {user && (auction.user == user._id) ? (
+                <>
+                    <button onClick={() => handleDeleteBtn(auction._id)}>Delete auction</button>
+                </>
+            ) : <></>}
         </div>
     );
 }

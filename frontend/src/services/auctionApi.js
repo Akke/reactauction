@@ -93,3 +93,16 @@ export const setAuctionClosed = async (id) => {
 
     return result
 }
+
+export const deleteAuction = async (id) => {
+    const url = "http://localhost:3000/auction/" + id
+    const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`
+        }
+    })
+    const result = await response.json()
+    return result
+}
