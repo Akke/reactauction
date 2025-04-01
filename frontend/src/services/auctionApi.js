@@ -1,13 +1,3 @@
-import Cookies from 'js-cookie'
-
-/*
-    titel på auctionen
-    bud
-    datum när det skapades och slutar
-    beskrivning
-    andvändare som skapade
-*/
-
 export const placeBid = async (id, bid) => {
     const url = "http://localhost:3000/auction/placeBid"
 
@@ -27,12 +17,14 @@ export const placeBid = async (id, bid) => {
 }
 
 export const deleteBid =  async (auctionId, bidId) => {
-    const url = `http://localhost:3000/auction/${auctionId}/bid/${bidId}`
+    const url = `http://localhost:3000/auction/auctionId/${auctionId}/bid/${bidId}`
 
     const response = await fetch(url, {
         method: "DELETE",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`
+
         },
     })
 
