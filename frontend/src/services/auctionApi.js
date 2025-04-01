@@ -76,3 +76,20 @@ export const getAllAuctions = async () => {
 
     return auctions
 }
+export const closeAuction = async (id) => {
+    const url = "http://localhost:3000/auction/" + id
+
+    const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`
+        },
+        body: JSON.stringify({
+            isOpen: false
+        })
+    })
+    const result =  await response.json()
+
+    return result
+}
