@@ -50,7 +50,7 @@ const AuctionSidebar = () => {
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
             <BudLista/>
-            {user && (auction.user != user.id) ? (
+            {user && (auction.user != user._id) ? (
                 <div onClick={handleBidButton} className="bid-button">
                     Add Bid
                 </div>
