@@ -3,6 +3,17 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+const getUsername = async (req, res) => {
+    const { id } = req.params
+
+    if(!id) return res.status(401).send({success:false, "message": "Missing User ID parameter."});
+
+    const user = await User.findById(id)
+    if(!user) return res.status(404).send({success:false, message: "User not found."});
+
+    res.status(200).send({success:true,data:user})
+}
+
 const getUser = async (req, res) => {
     const { token } = req.body;
 
@@ -111,4 +122,4 @@ const loginUser = async (req, res) => {
     }
 }
 
-module.exports = {createUser, loginUser, getUser }
+module.exports = {createUser, loginUser, getUser, getUsername }

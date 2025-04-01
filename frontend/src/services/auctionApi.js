@@ -77,3 +77,10 @@ export const createAuction = async (title, closingDate, askingPrice, description
 
     return await response.json()
 }
+export const getAllAuctions = async () => {
+    const url = "http://localhost:3000/auction"
+
+    const auctions = await fetch(url).then(response => response.json())
+
+    return auctions
+}
