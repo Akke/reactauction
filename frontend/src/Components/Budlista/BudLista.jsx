@@ -8,7 +8,10 @@ const BudLista = () => {
     const { auction, fetchAuction } = useContext(AuctionContext);
     const auctionId = auction._id
     const user = JSON.parse(localStorage.getItem('user'))
-    const bids = auction.bids.filter((bid) => (bid.userId == user._id))
+    let bids = []
+    if(user){
+        bids = auction.bids.filter((bid) => (bid.userId == user._id))
+    }
     const formatDate = (dateTime) => {
         const formatted = new Date(dateTime);
         const result = `${formatted.getFullYear()}-${formatted.getMonth()}-${formatted.getDate()} ${formatted.getHours()}:${formatted.getMinutes()}`;
@@ -26,6 +29,7 @@ const BudLista = () => {
     return (
         <div>
             <HighestBid bids={auction.bids}/>
+            {(!user && bids.length) ? (<>
             <b>Your bids:</b>
             <ul> 
                 {bids.map((bid, index) => (
@@ -35,6 +39,8 @@ const BudLista = () => {
                     </li>
                 ))}
             </ul>
+            </>) : <></>}
+            
         </div>
     );
 };
