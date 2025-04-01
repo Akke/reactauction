@@ -4,9 +4,10 @@ import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
 import { AuthContext } from "../../context/AuthProvider";
 import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
+import { HighestBid } from "../Budlista/HighstBid";
 
 const AuctionSidebar = () => {
-    const { auction } = useContext(AuctionContext);
+    const { auction, isAuctionOpen } = useContext(AuctionContext);
     const { user } = useContext(AuthContext);
     const modalRef = useRef(null);
 
@@ -49,9 +50,11 @@ const AuctionSidebar = () => {
                 <div className="bids">{auction.bids.length} bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
-            <BudLista/>
+            {isAuctionOpen() ? (
+                <BudLista/>
+            ) : (<HighestBid />)}
             {user && (auction.user != user._id) ? (
-                auction.isOpen ? (
+                isAuctionOpen() ? (
                     <div onClick={handleBidButton} className="bid-button">
                         Add Bid
                     </div>
