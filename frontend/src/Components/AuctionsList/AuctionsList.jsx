@@ -5,7 +5,7 @@ import { NavLink } from 'react-router'
 import { AuctionContext } from '../../context/AuctionProvider'
 
 const AuctionsList = () => {
-    const { auction, auctions, getAuctions } = useContext(AuctionContext);
+    const { auction, auctions, getAuctions, isAuctionOpen } = useContext(AuctionContext);
     const [auctionList, setAuctionList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -36,9 +36,11 @@ const AuctionsList = () => {
         <ul className={classes.auctionList}>
             {
                 auctionList.map(auction => {
-                    return (
-                        <AuctionItem key={auction._id} auction={auction} />
-                    )
+                    if(isAuctionOpen(auction._id)) {
+                        return (
+                            <AuctionItem key={auction._id} auction={auction} />
+                        )
+                    }
                 })
             }
         </ul>

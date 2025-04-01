@@ -28,7 +28,7 @@ const BudLista = () => {
 
     return (
         <div>
-            <HighestBid bids={auction.bids}/>
+            <HighestBid />
             {(user && bids.length) ? (<>
             <b>Your bids:</b>
             <ul> 
