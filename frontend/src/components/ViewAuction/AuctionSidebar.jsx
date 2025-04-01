@@ -11,7 +11,6 @@ import { useNavigate } from "react-router";
 const AuctionSidebar = () => {
     const { auction, isAuctionOpen } = useContext(AuctionContext);
     const navigate = useNavigate()
-    const { auction } = useContext(AuctionContext);
     const { user } = useContext(AuthContext);
     const modalRef = useRef(null);
 

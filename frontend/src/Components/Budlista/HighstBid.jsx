@@ -17,4 +17,5 @@ export const HighestBid = () => {
         return (
             <>This auction ended without any bids.</>
         )
+    }
 }
