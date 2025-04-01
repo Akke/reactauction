@@ -1,12 +1,14 @@
 import { useContext } from 'react';
 import { AuctionContext } from '../../context/AuctionProvider';
 import { deleteBid } from '../../services/auctionApi';
+import { useEffect } from 'react';
+import {HighestBid} from './HighstBid'
 
 const BudLista = () => {
-    const { auction } = useContext(AuctionContext);
+    const { auction, fetchAuction } = useContext(AuctionContext);
     const auctionId = auction._id
-    const bids = auction.bids   
     const user = JSON.parse(localStorage.getItem('user'))
+    const bids = auction.bids.filter((bid) => (bid.userId == user._id))
     const formatDate = (dateTime) => {
         const formatted = new Date(dateTime);
         const result = `${formatted.getFullYear()}-${formatted.getMonth()}-${formatted.getDate()} ${formatted.getHours()}:${formatted.getMinutes()}`;
@@ -14,15 +16,17 @@ const BudLista = () => {
     }
 
         const handleDeleteBtn = async (bid) =>{
-            if(user._id !== bid.userId) console.log('You can only delete the bids you placed')
             const bidId = bid._id
-        console.log(auctionId, bidId)
             const result = await deleteBid(auctionId, bidId)
-            console.log(result)
+            if(result.success) {
+                fetchAuction(auctionId)
+            }
         }
 
     return (
         <div>
+            <HighestBid bids={auction.bids}/>
+            <b>Your bids:</b>
             <ul> 
                 {bids.map((bid, index) => (
                     <li key={index}>
