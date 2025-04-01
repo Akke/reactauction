@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { getUsername } from "../services/userService";
 
 export const AuthContext = createContext();
 
@@ -22,8 +23,13 @@ const AuthProvider = ({ children }) => {
         setUser(null);
     }
 
+    const idToUsername  = async (id) => {
+        const result = await getUsername(id);
+        return result.data.username; 
+    }
+
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, idToUsername }}>
             {children}
         </AuthContext.Provider>
     );

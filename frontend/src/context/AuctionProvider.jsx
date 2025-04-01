@@ -1,13 +1,22 @@
 import { createContext, useState } from "react";
-import { getAuctionById, placeBid } from "../services/auctionApi";
+import { getAllAuctions, getAuctionById, placeBid } from "../services/auctionApi";
 
 export const AuctionContext = createContext();
 
 const AuctionProvider = ({ children }) => {
     const [auction, setAuction] = useState({});
+    const [auctions, setAuctions] = useState([]);
 
     const fetchAuction = async (id) => {
         const data = await getAuctionById(id);
+
+        setAuction(data.data);
+
+        return data.data;
+    }
+
+    const getAuctions = async () => {
+        const data = await getAllAuctions();
 
         setAuction(data.data);
 
@@ -22,7 +31,7 @@ const AuctionProvider = ({ children }) => {
     }
 
     return (
-        <AuctionContext.Provider value={{ auction, fetchAuction, addBid }}>
+        <AuctionContext.Provider value={{ auction, fetchAuction, getAuctions, addBid }}>
             {children}
         </AuctionContext.Provider>
     );

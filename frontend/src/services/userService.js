@@ -46,3 +46,13 @@ export const getUser = async (token) => {
 
     return result;
 }
+
+export const getUsername = async (id) => {
+    const url = `http://localhost:3000/user/${id}`;
+
+    const response = await fetch(url);
+
+    const result = await response.json();
+
+    return result;
+}
