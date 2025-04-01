@@ -29,8 +29,8 @@ const NewAuction = () => {
 
     return (<>
     
-        {error ? (<div>{error}</div>) : ""}
-        {success ? (<div>{success}</div>) : ""}
+        {error ? (<div className={classes.error}>{error}</div>) : ""}
+        {success ? (<div className={classes.success}>{success}</div>) : ""}
 
         <form method='POST' onSubmit={onFormSubmit}>
             <InputField type="text" label="Title" name="title" desc="" placeholder="Auction title" />

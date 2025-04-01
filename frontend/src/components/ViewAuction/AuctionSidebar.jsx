@@ -46,14 +46,20 @@ const AuctionSidebar = () => {
             </div>
             <div className="price">
                 <div className="asking-price">Asking Price</div>
-                <div className="bids">0 bids</div>
+                <div className="bids">{auction.bids.length} bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
             <BudLista/>
-            {user && (auction.user != user.id) ? (
-                <div onClick={handleBidButton} className="bid-button">
-                    Add Bid
-                </div>
+            {user && (auction.user != user._id) ? (
+                auction.isOpen ? (
+                    <div onClick={handleBidButton} className="bid-button">
+                        Add Bid
+                    </div>
+                ) : (
+                    <div className="bid-button closed">
+                        Auction Closed
+                    </div>
+                )
             ) : (<></>)}
         </div>
     );
