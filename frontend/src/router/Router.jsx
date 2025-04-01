@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import AuctionsList from "../Components/AuctionsList/AuctionsList";
 import AccountRegister from "../components/AccountRegister/AccountRegister";
 import AccountLogin from "../components/AccountLogin/AccountLogin";
+import NewAuction from "../Components/NewAuctionForm/NewAuction";
 import ProtectedRoute from "./ProtectedRoute";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
@@ -23,6 +24,7 @@ const Router = () => {
         <>
             <Routes>
                 <Route exact path="/" element={<Layout><AuctionsList/></Layout>}></Route>
+                <Route exact path="/newauction" element={<Layout><NewAuction/></Layout>}></Route>
                 <Route exact path="/register" element={<PublicRoute isAuthenticated={user !== null} />}>
                     <Route index element={<Layout><AccountRegister /></Layout>} />
                 </Route>

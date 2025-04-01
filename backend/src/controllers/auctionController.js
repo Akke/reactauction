@@ -2,7 +2,7 @@ const { default: mongoose } = require('mongoose')
 const Auction = require('../models/auctionModel')
 
 const createAuction = async (req, res) => {
-    const {title, closingDate, askingPrice, description} = req.body
+    const {title, closingDate, askingPrice, description, user} = req.body
     try{  
         const newAuction = new Auction({
             title: title,

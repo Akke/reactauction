@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import classes from './auctionslist.module.css'
 import AuctionItem from './AuctionItem'
+import { NavLink } from 'react-router'
 import { AuctionContext } from '../../context/AuctionProvider'
 
 const AuctionsList = () => {
@@ -26,9 +27,14 @@ const AuctionsList = () => {
     }, []);
 
     return (<>
-        <h1>Alla Auktioner</h1>
+        <h1>All Auctions</h1>
+        <button>
+            <NavLink className={classes.newBtn} to="/newauction">Add new</NavLink>
+        </button>
+
         {loading && "Loading..."}
         {error && "No auctions found"}
+
         <ul className={classes.auctionList}>
             {
                 auctionList.map(auction => {
