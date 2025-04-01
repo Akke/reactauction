@@ -69,7 +69,8 @@ export const createAuction = async (title, closingDate, askingPrice, description
     const response = await fetch(url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`
         },
         body: JSON.stringify({title, closingDate, askingPrice, description, user})
     })

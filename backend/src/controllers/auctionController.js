@@ -9,8 +9,7 @@ const createAuction = async (req, res) => {
             closingDate: closingDate,
             askingPrice: askingPrice,
             description: description,
-            user: user // Temporary user handling
-            // user: req.user.id
+            user: req.user.id
         })
         await newAuction.save()
         res.status(200).json({success: true, message: 'successfully created new auction'})
