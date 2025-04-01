@@ -21,7 +21,7 @@ const Header = () => {
       <nav>
         <ul>
         <li> <a href="/">Home</a></li>
-          {isLoggedIn ? (
+          {isLoggedIn && user ? (
               <li><span>Welcome, {user.username}</span></li>
           ) : (<></>)}
         </ul>
