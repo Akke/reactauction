@@ -6,15 +6,19 @@
 }
 
 .item:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: aliceblue;
 }
 
 .item:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgb(218, 226, 233);
 }
 
 .item h2{
     margin: 0;
+}
+
+.item a {
+    color: inherit;
 }
 
 .itemData{

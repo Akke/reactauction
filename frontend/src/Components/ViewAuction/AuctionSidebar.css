@@ -69,3 +69,7 @@
 .ViewAuction .sidebar .favorite:hover {
     background-color: #cfcfcf;
 }
+
+.ViewAuction .sidebar .delete-auction {
+    margin-top: 20px;
+}
