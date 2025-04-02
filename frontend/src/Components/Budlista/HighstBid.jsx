@@ -8,10 +8,10 @@ export const HighestBid = () => {
     const filteredBids = bidsArray.sort((a, b) => b.bid - a.bid)
     if(filteredBids.length) {
         return(
-            <>
-            <b>Highest Bid:</b>
-            <p>{filteredBids[0].bid}</p>
-            </>
+            <div className="highest-bid">
+                <b>Highest Bid</b>
+                {filteredBids[0].bid}kr
+            </div>
         )
     } else if(!filteredBids.length && !isAuctionOpen()) {
         return (

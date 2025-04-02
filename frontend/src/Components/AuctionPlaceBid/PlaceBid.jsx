@@ -41,14 +41,14 @@ const PlaceBid = forwardRef((props, ref) => {
             <div className="overlay"></div>
             <div className="content">
                 <div className="header-wrapper">
-                <h1>Bid</h1>
-                <img className="close-button" onClick={handleCloseClick} src="../close.svg"/>
+                    <h1>Bid</h1>
+                    <img className="close-button" onClick={handleCloseClick} src="../close.svg"/>
                 </div>
                 {error ? (
                     <div className="error">{error}</div>
                 ) : (<></>)}
                 <form onSubmit={handleSubmitBid}>
-                    <InputField type="text" label="Bid amount" name="bid" desc="Place your bid here" placeholder="Bid" />
+                    <InputField type="text" label="Bid amount" name="bid" desc="Amount in SEK" placeholder="Bid" />
                     <button type="submit">Place bid</button>
                 </form>
             </div>

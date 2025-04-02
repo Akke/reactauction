@@ -1,9 +1,16 @@
 
 .item{
-    border: 1px solid black;
-    border-radius: 1rem;
     padding: 10px;
-    width: 500px;
+    width: 100%;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.item:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.item:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .item h2{
@@ -12,7 +19,7 @@
 
 .itemData{
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
 }
 .itemData button{
     margin: 0;
