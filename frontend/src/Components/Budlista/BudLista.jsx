@@ -3,6 +3,7 @@ import { AuctionContext } from '../../context/AuctionProvider';
 import { deleteBid } from '../../services/auctionApi';
 import { useEffect } from 'react';
 import {HighestBid} from './HighstBid'
+import "./BudLista.css";
 
 const BudLista = () => {
     const { auction, fetchAuction } = useContext(AuctionContext);
@@ -27,14 +28,16 @@ const BudLista = () => {
         }
 
     return (
-        <div>
+        <div className="bid-list">
             <HighestBid />
+
             {(user && bids.length) ? (<>
-            <b>Your bids:</b>
+            <div className="your-bids-title">Your Bids</div>
+
             <ul> 
                 {bids.map((bid, index) => (
                     <li key={index}>
-                        <b>{formatDate(bid.date)}</b> • {bid.bid}kr
+                        <div className="bid-price-date">{formatDate(bid.date)}</div> {bid.bid}kr
                         <button onClick={(e)=>handleDeleteBtn(bid)}>delete</button>
                     </li>
                 ))}

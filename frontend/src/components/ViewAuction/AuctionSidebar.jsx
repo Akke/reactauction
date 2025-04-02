@@ -52,11 +52,11 @@ const AuctionSidebar = () => {
 
             <div className="title">{auction.title}</div>
             <div className="expiration-date">
-                <div className="date">Ends {formatDate(auction.closingDate)}</div>
+                <div className="date">Ends {formatDate(auction.closingDate)} — </div>
                 <div className="estimate">{getDateDifference(auction.createdAt, auction.closingDate)}</div>
             </div>
             <div className="price">
-                <div className="asking-price">Asking Price</div>
+                <div className="asking-price">Asking Price — </div>
                 <div className="bids">{auction.bids.length} bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>

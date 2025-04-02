@@ -15,7 +15,7 @@
 .bid-wrapper .content {
     z-index: 3;
     background-color: #FFF;
-    box-shadow: 0 0 20px black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     position: fixed;
     top: 50%;
     left: 50%;

@@ -22,20 +22,24 @@ const AuctionItem = ({ auction }) => {
         return result;
     }
 
+    const getDateDifference = (dateTimeNow, dateTimeThen) => {
+        const timeNow = new Date(dateTimeNow);
+        const timeThen = new Date(dateTimeThen);
+        const diff = timeThen - timeNow;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        const result = `${days}d ${hours}h ${minutes}m`;
+
+        return result;
+    }
+
     return (
         <li className={classes.item}>
             <div className={classes.itemData}>
-                <h2><NavLink to={`/view/${auction._id}`} className={classes.auctionTitle}>{auction.title}</NavLink></h2>
-            </div>
-            <div className={classes.itemData}>
-                <div>
-                    <span><b>Price:</b> {auction.askingPrice} kr</span>
-                    <span><b>Seller:</b> {username}</span>
-                </div>
-                <div>
-                    <span><b>Start:</b> {formatDate(auction.createdAt)}</span>
-                    <span><b>End:</b> {formatDate(auction.closingDate)}</span>
-                </div>
+                {username} • <b><NavLink to={`/view/${auction._id}`} className={classes.auctionTitle}>{auction.title}</NavLink></b> for {auction.askingPrice}kr — ends in  {getDateDifference(auction.createdAt, auction.closingDate)}
             </div>
         </li>
     )

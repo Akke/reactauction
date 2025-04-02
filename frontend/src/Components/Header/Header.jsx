@@ -20,7 +20,7 @@ const Header = () => {
 
       <nav>
         <ul>
-        <li> <a href="/">Home</a></li>
+        <li><NavLink to="/">Home</NavLink></li>
           {isLoggedIn && user ? (
               <li><span>Welcome, {user.username}</span></li>
           ) : (<></>)}

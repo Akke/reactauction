@@ -1,0 +1,56 @@
+.bid-list {
+    margin-bottom: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.bid-list:empty {
+    display: none;
+}
+
+.bid-list ul {
+    list-style-type: none;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+.bid-list ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.bid-list ul li .bid-price-date {
+    background-color: #121212;
+    color: #FFF;
+    font-weight: bold;
+    padding: 3px 6px;
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+.bid-list ul li button {
+    padding: 3px 6px;
+    margin-left: auto;
+    background-color: #d02424;
+}
+
+.bid-list ul li button:hover {
+    background-color: #f73f3f;
+}
+
+.highest-bid {
+    background-color: aliceblue;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.bid-list .your-bids-title {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
