@@ -7,9 +7,11 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const cache = localStorage.getItem("user")
+        const cache = localStorage.getItem("user");
         if(cache) {
-            setUser(JSON.parse(cache))
+            setUser(JSON.parse(cache));
+        } else if(!cache && user) {
+            logout();
         }
     }, []);
 
@@ -28,8 +30,12 @@ const AuthProvider = ({ children }) => {
         return result.data.username; 
     }
 
+    const isLoggedIn = () => {
+        return user != null;
+    }
+
     return (
-        <AuthContext.Provider value={{ user, login, logout, idToUsername }}>
+        <AuthContext.Provider value={{ user, login, logout, idToUsername, isLoggedIn }}>
             {children}
         </AuthContext.Provider>
     );

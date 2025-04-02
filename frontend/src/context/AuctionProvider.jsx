@@ -48,7 +48,7 @@ const AuctionProvider = ({ children }) => {
     }
 
     return (
-        <AuctionContext.Provider value={{ auction, fetchAuction, getAuctions, addBid, closeAuction, isAuctionOpen }}>
+        <AuctionContext.Provider value={{ auction, auctions, fetchAuction, getAuctions, addBid, closeAuction, isAuctionOpen }}>
             {children}
         </AuctionContext.Provider>
     );
