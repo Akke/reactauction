@@ -1,18 +1,19 @@
 import './PlaceBid.css'
 import {useParams} from 'react-router-dom'
 import InputField from '../InputField/InputField'
-import {placeBid} from '../../services/auctionApi'
+import {placeBid, updateBid} from '../../services/auctionApi'
 import { forwardRef, useContext, useState } from "react"
 import { AuctionContext } from '../../context/AuctionProvider'
 
 
 const PlaceBid = forwardRef((props, ref) => {
     const { addBid } = useContext(AuctionContext);
+    const user = JSON.parse(localStorage.getItem('user'))
+
 
     const [error, setError] = useState("");
 
     const {id} = useParams()
-
     const handleSubmitBid = async (e) => {
         e.preventDefault();
         setError("");
@@ -20,6 +21,7 @@ const PlaceBid = forwardRef((props, ref) => {
         const bidData = e.target.bid.value
 
         const result = await addBid(id, bidData);
+        
 
         if(result.success) {
             const modalStyle = ref.current.style

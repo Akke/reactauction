@@ -1,13 +1,3 @@
-import Cookies from 'js-cookie'
-
-/*
-    titel på auctionen
-    bud
-    datum när det skapades och slutar
-    beskrivning
-    andvändare som skapade
-*/
-
 export const placeBid = async (id, bid) => {
     const url = "http://localhost:3000/auction/placeBid"
 
@@ -27,12 +17,14 @@ export const placeBid = async (id, bid) => {
 }
 
 export const deleteBid =  async (auctionId, bidId) => {
-    const url = `http://localhost:3000/auction/${auctionId}/bid/${bidId}`
+    const url = `http://localhost:3000/auction/auctionId/${auctionId}/bid/${bidId}`
 
     const response = await fetch(url, {
         method: "DELETE",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`
+
         },
     })
 
@@ -83,4 +75,34 @@ export const getAllAuctions = async () => {
     const auctions = await fetch(url).then(response => response.json())
 
     return auctions
+}
+export const setAuctionClosed = async (id) => {
+    const url = "http://localhost:3000/auction/" + id
+
+    const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`
+        },
+        body: JSON.stringify({
+            isOpen: false
+        })
+    })
+    const result =  await response.json()
+
+    return result
+}
+
+export const deleteAuction = async (id) => {
+    const url = "http://localhost:3000/auction/" + id
+    const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("user")).token}`
+        }
+    })
+    const result = await response.json()
+    return result
 }

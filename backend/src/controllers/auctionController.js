@@ -39,7 +39,7 @@ const getAuction = async (req, res) => {
 
 const getAllAuctions = async (req, res) => {
     try{
-        const auction = await Auction.find()
+        const auction = await Auction.find({ isOpen: true })
         if(!auction){
             return res.status(400).json({success: false, message: "Auction not found"})
         }
@@ -69,7 +69,7 @@ const deleteAuction = async (req, res) => {
 }
 
 const updateAuction = async (req, res) => {
-    const {title, closingDate, askingPrice, description} = req.body
+    const {title, closingDate, askingPrice, description,isOpen} = req.body
     const {id} = req.params
     if(!id){
         return res.status(401).send('valid id needs to be sent in url')
@@ -88,7 +88,8 @@ const updateAuction = async (req, res) => {
         title,
         closingDate,
         askingPrice,
-        description
+        description,
+        isOpen
     };
     
     try{
@@ -172,9 +173,10 @@ const deleteBid = async (req, res) => {
     try{
         const query = {"_id":auctionId, "bids": { $elemMatch: { _id: new mongoose.Types.ObjectId(bidId) } } };
         const bid = await Auction.findOne(query)
-        const idIsMatch = req.user.id == bid.bids[0].userId 
-        if(!idIsMatch){
-            return res.status(400).json({success:false, message: "Can't delete a bid that oyu haven't placed"})
+        const idIsMatch = bid.bids.filter(b => b.userId == req.user.id)
+        if(idIsMatch.length < 1){
+            console.log(req.user.id, bid.bids[0].userId)
+            return res.status(400).json({success:false, message: "Can't delete a bid that you haven't placed"})
         }
         await Auction.updateOne(
             query,

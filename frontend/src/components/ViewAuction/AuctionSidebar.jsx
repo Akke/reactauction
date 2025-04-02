@@ -4,9 +4,13 @@ import { AuctionContext } from "../../context/AuctionProvider";
 import "./AuctionSidebar.css";
 import { AuthContext } from "../../context/AuthProvider";
 import PlaceBid from "../../Components/AuctionPlaceBid/PlaceBid";
+import { HighestBid } from "../Budlista/HighstBid";
+import { deleteAuction } from "../../services/auctionApi";
+import { useNavigate } from "react-router";
 
 const AuctionSidebar = () => {
-    const { auction } = useContext(AuctionContext);
+    const { auction, isAuctionOpen } = useContext(AuctionContext);
+    const navigate = useNavigate()
     const { user } = useContext(AuthContext);
     const modalRef = useRef(null);
 
@@ -35,6 +39,13 @@ const AuctionSidebar = () => {
         modalStyle.display = "block"
     }
 
+    const handleDeleteBtn = async (id) => {
+        const result  = await deleteAuction(id)
+        if(result.success){
+            navigate("/")
+        }
+    }
+
     return (
         <div className="sidebar">
             <PlaceBid ref={modalRef} />
@@ -46,15 +57,28 @@ const AuctionSidebar = () => {
             </div>
             <div className="price">
                 <div className="asking-price">Asking Price</div>
-                <div className="bids">0 bids</div>
+                <div className="bids">{auction.bids.length} bids</div>
                 <div className="amount">{auction.askingPrice} kr</div>
             </div>
-            <BudLista/>
-            {user && (auction.user != user.id) ? (
-                <div onClick={handleBidButton} className="bid-button">
-                    Add Bid
-                </div>
+            {isAuctionOpen() ? (
+                <BudLista/>
+            ) : (<HighestBid />)}
+            {user && (auction.user != user._id) ? (
+                isAuctionOpen() ? (
+                    <div onClick={handleBidButton} className="bid-button">
+                        Add Bid
+                    </div>
+                ) : (
+                    <div className="bid-button closed">
+                        Auction Closed
+                    </div>
+                )
             ) : (<></>)}
+            {user && (auction.user == user._id) ? (
+                <>
+                    <button onClick={() => handleDeleteBtn(auction._id)}>Delete auction</button>
+                </>
+            ) : <></>}
         </div>
     );
 }
