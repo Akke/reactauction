@@ -76,7 +76,7 @@ const AuctionSidebar = () => {
             ) : (<></>)}
             {user && (auction.user == user._id) ? (
                 <>
-                    <button onClick={() => handleDeleteBtn(auction._id)}>Delete auction</button>
+                    <button className="delete-auction" onClick={() => handleDeleteBtn(auction._id)}>Delete Auction</button>
                 </>
             ) : <></>}
         </div>
