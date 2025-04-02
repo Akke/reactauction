@@ -18,7 +18,7 @@ const AuctionProvider = ({ children }) => {
     const getAuctions = async () => {
         const data = await getAllAuctions();
 
-        setAuction(data.data);
+        setAuctions(data.data);
 
         return data.data;
     }
@@ -31,7 +31,7 @@ const AuctionProvider = ({ children }) => {
     }
 
     return (
-        <AuctionContext.Provider value={{ auction, fetchAuction, getAuctions, addBid }}>
+        <AuctionContext.Provider value={{ auction, auctions, fetchAuction, getAuctions, addBid }}>
             {children}
         </AuctionContext.Provider>
     );

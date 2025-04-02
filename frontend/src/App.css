@@ -13,8 +13,13 @@ button {
     transition: 0.1s background-color ease-in-out;
     text-transform: uppercase;
     text-align: center;
+    text-decoration: none;
 }
 
 button:hover {
     background-color: #303030;
+}
+
+a {
+    text-decoration: none;
 }

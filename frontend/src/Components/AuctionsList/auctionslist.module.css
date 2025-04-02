@@ -6,3 +6,15 @@
     text-decoration: none;
     color: white;
 }
+
+.newAuctionButton {
+    display: block;
+    margin-bottom: 40px;
+}
+
+.noAuctions {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 4px;
+    width: 100%;
+}
