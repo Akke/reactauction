@@ -7,6 +7,7 @@ import { AuthContext } from '../../context/AuthProvider'
 
 const AuctionsList = () => {
     const { auctions, getAuctions, isAuctionOpen } = useContext(AuctionContext);
+    const { isLoggedIn } = useContext(AuthContext);
     const [auctionList, setAuctionList] = useState([]);
     const [loading, setLoading] = useState(true);
 
